@@ -1,0 +1,18 @@
+# Build artefacts
+node_modules/
+dist/
+coverage/
+
+# Env / local
+.env
+.env.*
+
+# Editor
+.DS_Store
+.idea/
+.vscode/
+
+# Contribot scratch (per-cycle, never commit)
+.github
+contribot.state.*.json
+transcripts/
