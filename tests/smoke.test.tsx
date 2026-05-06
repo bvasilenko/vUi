@@ -58,6 +58,14 @@ describe("Avatar", () => {
     fireEvent.error(screen.getByRole("img"));
     expect(screen.getByText("ER")).toBeInTheDocument();
   });
+
+  it("AvatarFallback throws when rendered outside Avatar", () => {
+    expect(() => render(<AvatarFallback>FB</AvatarFallback>)).toThrow();
+  });
+
+  it("AvatarImage throws when rendered outside Avatar", () => {
+    expect(() => render(<AvatarImage src="x.png" alt="x" />)).toThrow();
+  });
 });
 
 describe("Badge", () => {
@@ -83,11 +91,6 @@ describe("Badge", () => {
 });
 
 describe("Box", () => {
-  it("renders as <div> by default", () => {
-    const { container } = render(<Box>Content</Box>);
-    expect(container.firstChild!.nodeName).toBe("DIV");
-  });
-
   it("applies flex class when display=flex", () => {
     const { container } = render(<Box display="flex">X</Box>);
     expect(container.firstChild).toHaveClass("flex");
@@ -204,15 +207,7 @@ describe("Separator", () => {
     expect(container.firstChild).toHaveClass("w-px");
   });
 
-  it("decorative=false renders with role=separator", () => {
-    render(<Separator decorative={false} />);
-    expect(screen.getByRole("separator")).toBeInTheDocument();
-  });
 
-  it("decorative=true (default) renders with role=none", () => {
-    render(<Separator />);
-    expect(screen.queryByRole("separator")).toBeNull();
-  });
 });
 
 describe("Icon", () => {

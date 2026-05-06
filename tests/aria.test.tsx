@@ -10,6 +10,7 @@ import { Switch } from "../src/components/Switch";
 import { RadioGroup, RadioGroupItem } from "../src/components/RadioGroup";
 import { Checkbox } from "../src/components/Checkbox";
 import { Button } from "../src/components/Button";
+import { Separator } from "../src/components/Separator";
 
 describe("ARIA attribute overrides", () => {
   it("Button role is overridable", () => {
@@ -107,6 +108,40 @@ describe("Tooltip ARIA", () => {
     );
     fireEvent.mouseEnter(screen.getByText("Label"));
     expect(onOpenChange).toHaveBeenCalledWith(true);
+  });
+
+  it("controlled tooltip: onOpenChange fires with false on mouse leave when open=true", () => {
+    const onOpenChange = vi.fn();
+    render(
+      <Tooltip open={true} onOpenChange={onOpenChange}>
+        <TooltipTrigger>Label</TooltipTrigger>
+        <TooltipContent>Tip</TooltipContent>
+      </Tooltip>
+    );
+    fireEvent.mouseLeave(screen.getByText("Label"));
+    expect(onOpenChange).toHaveBeenCalledWith(false);
+  });
+});
+
+describe("Separator ARIA attributes", () => {
+  it("decorative=true (default) renders with role=none", () => {
+    const { container } = render(<Separator />);
+    expect(container.firstChild).toHaveAttribute("role", "none");
+  });
+
+  it("decorative=false renders with role=separator", () => {
+    render(<Separator decorative={false} />);
+    expect(screen.getByRole("separator")).toBeInTheDocument();
+  });
+
+  it("decorative=false with horizontal orientation sets aria-orientation=horizontal", () => {
+    render(<Separator decorative={false} orientation="horizontal" />);
+    expect(screen.getByRole("separator")).toHaveAttribute("aria-orientation", "horizontal");
+  });
+
+  it("decorative=false with vertical orientation sets aria-orientation=vertical", () => {
+    render(<Separator decorative={false} orientation="vertical" />);
+    expect(screen.getByRole("separator")).toHaveAttribute("aria-orientation", "vertical");
   });
 });
 

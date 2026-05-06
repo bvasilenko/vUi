@@ -30,7 +30,7 @@ const justifyMap: Record<NonNullable<InlineOwnProps["justify"]>, string> = {
 };
 
 export const Inline = createPolymorphicComponent<"div", InlineOwnProps>(
-  ({ as: Tag = "div", align, justify, wrap = false, className, children, ...rest }) => (
+  ({ as: Tag = "div", asChild: _asChild, align, justify, wrap = false, className, children, ...rest }) => (
     <Tag
       className={cn(
         "flex flex-row",

@@ -37,7 +37,7 @@ const rowsMap: Record<NonNullable<GridOwnProps["rows"]>, string> = {
 };
 
 export const Grid = createPolymorphicComponent<"div", GridOwnProps>(
-  ({ as: Tag = "div", columns, rows, className, children, ...rest }) => (
+  ({ as: Tag = "div", asChild: _asChild, columns, rows, className, children, ...rest }) => (
     <Tag
       className={cn(
         "grid",

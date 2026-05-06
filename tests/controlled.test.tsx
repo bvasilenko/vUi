@@ -136,6 +136,13 @@ describe("controlled / uncontrolled", () => {
       fireEvent.click(screen.getByRole("switch"));
       expect(screen.getByRole("switch")).toHaveAttribute("aria-checked", "false");
     });
+
+    it("uncontrolled: onCheckedChange receives false when toggled from defaultChecked=true", () => {
+      const onCheckedChange = vi.fn();
+      render(<Switch defaultChecked onCheckedChange={onCheckedChange} />);
+      fireEvent.click(screen.getByRole("switch"));
+      expect(onCheckedChange).toHaveBeenCalledWith(false);
+    });
   });
 
   describe("Checkbox", () => {
@@ -213,6 +220,55 @@ describe("controlled / uncontrolled", () => {
       );
       fireEvent.click(screen.getAllByRole("radio")[1]!);
       expect(onValueChange).toHaveBeenCalledWith("blue");
+    });
+
+    it("uncontrolled: defaultValue with no matching item leaves all items unselected", () => {
+      render(
+        <RadioGroup name="color" defaultValue="green">
+          <RadioGroupItem value="red" label="Red" />
+          <RadioGroupItem value="blue" label="Blue" />
+        </RadioGroup>
+      );
+      const radios = screen.getAllByRole("radio");
+      expect(radios[0]).not.toBeChecked();
+      expect(radios[1]).not.toBeChecked();
+    });
+
+    it("controlled: value prop takes precedence over defaultValue", () => {
+      render(
+        <RadioGroup name="color" value="red" defaultValue="blue" onValueChange={() => {}}>
+          <RadioGroupItem value="red" label="Red" />
+          <RadioGroupItem value="blue" label="Blue" />
+        </RadioGroup>
+      );
+      const radios = screen.getAllByRole("radio");
+      expect(radios[0]).toBeChecked();
+      expect(radios[1]).not.toBeChecked();
+    });
+
+    it("uncontrolled: defaultValue pre-selects the matching item", () => {
+      render(
+        <RadioGroup name="color" defaultValue="blue">
+          <RadioGroupItem value="red" label="Red" />
+          <RadioGroupItem value="blue" label="Blue" />
+        </RadioGroup>
+      );
+      const radios = screen.getAllByRole("radio");
+      expect(radios[0]).not.toBeChecked();
+      expect(radios[1]).toBeChecked();
+    });
+
+    it("uncontrolled: defaultValue selection updates on subsequent click", () => {
+      render(
+        <RadioGroup name="color" defaultValue="blue">
+          <RadioGroupItem value="red" label="Red" />
+          <RadioGroupItem value="blue" label="Blue" />
+        </RadioGroup>
+      );
+      fireEvent.click(screen.getAllByRole("radio")[0]!);
+      const radios = screen.getAllByRole("radio");
+      expect(radios[0]).toBeChecked();
+      expect(radios[1]).not.toBeChecked();
     });
   });
 });

@@ -6,9 +6,13 @@ import {
   useState,
   useId,
   type HTMLAttributes,
-  type ReactNode,
+  type ElementType,
 } from "react";
 import { cn } from "../utils/cn";
+import {
+  createPolymorphicComponent,
+  type PolymorphicProps,
+} from "../utils/polymorphic";
 
 type TooltipContextValue = {
   open: boolean;
@@ -24,33 +28,41 @@ function useTooltipContext(): TooltipContextValue {
   return ctx;
 }
 
-export type TooltipProps = {
+type TooltipOwnProps = {
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
-  children?: ReactNode;
 };
 
-export function Tooltip({ open: controlledOpen, onOpenChange, children }: TooltipProps) {
-  const [internalOpen, setInternalOpen] = useState(false);
-  const contentId = useId();
-  const isControlled = controlledOpen !== undefined;
-  const open = isControlled ? controlledOpen : internalOpen;
+export type TooltipProps<E extends ElementType = "span"> = PolymorphicProps<
+  E,
+  TooltipOwnProps
+>;
 
-  const setOpen = (next: boolean) => {
-    if (!isControlled) setInternalOpen(next);
-    onOpenChange?.(next);
-  };
+export const Tooltip = createPolymorphicComponent<"span", TooltipOwnProps>(
+  ({ as: Tag = "span", asChild: _asChild, open: controlledOpen, onOpenChange, className, children, ...rest }) => {
+    const [internalOpen, setInternalOpen] = useState(false);
+    const contentId = useId();
+    const isControlled = controlledOpen !== undefined;
+    const open = isControlled ? controlledOpen : internalOpen;
 
-  return (
-    <TooltipContext.Provider value={{ open, setOpen, contentId }}>
-      <span className="relative inline-flex">{children}</span>
-    </TooltipContext.Provider>
-  );
-}
+    const setOpen = (next: boolean) => {
+      if (!isControlled) setInternalOpen(next);
+      onOpenChange?.(next);
+    };
 
-export type TooltipTriggerProps = HTMLAttributes<HTMLSpanElement> & {
-  children?: ReactNode;
-};
+    return (
+      <TooltipContext.Provider value={{ open, setOpen, contentId }}>
+        <Tag className={cn("relative inline-flex", className)} {...rest}>
+          {children}
+        </Tag>
+      </TooltipContext.Provider>
+    );
+  }
+);
+
+Tooltip.displayName = "Tooltip";
+
+export type TooltipTriggerProps = HTMLAttributes<HTMLSpanElement>;
 
 export function TooltipTrigger({ className, children, ...rest }: TooltipTriggerProps) {
   const { setOpen, contentId } = useTooltipContext();
@@ -69,9 +81,7 @@ export function TooltipTrigger({ className, children, ...rest }: TooltipTriggerP
   );
 }
 
-export type TooltipContentProps = HTMLAttributes<HTMLDivElement> & {
-  children?: ReactNode;
-};
+export type TooltipContentProps = HTMLAttributes<HTMLDivElement>;
 
 export function TooltipContent({ className, children, ...rest }: TooltipContentProps) {
   const { open, contentId } = useTooltipContext();

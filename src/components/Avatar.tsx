@@ -6,9 +6,13 @@ import {
   useState,
   type ImgHTMLAttributes,
   type HTMLAttributes,
-  type ReactNode,
+  type ElementType,
 } from "react";
 import { cn } from "../utils/cn";
+import {
+  createPolymorphicComponent,
+  type PolymorphicProps,
+} from "../utils/polymorphic";
 
 type AvatarContextValue = {
   imageStatus: "idle" | "loaded" | "error";
@@ -23,24 +27,30 @@ function useAvatarContext(): AvatarContextValue {
   return ctx;
 }
 
-type AvatarProps = HTMLAttributes<HTMLSpanElement> & { children?: ReactNode };
+export type AvatarProps<E extends ElementType = "span"> = PolymorphicProps<E>;
 
-export function Avatar({ className, children, ...rest }: AvatarProps) {
-  const [imageStatus, setImageStatus] = useState<"idle" | "loaded" | "error">("idle");
-  return (
-    <AvatarContext.Provider value={{ imageStatus, setImageStatus }}>
-      <span
-        className={cn(
-          "relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full",
-          className
-        )}
-        {...rest}
-      >
-        {children}
-      </span>
-    </AvatarContext.Provider>
-  );
-}
+export const Avatar = createPolymorphicComponent<"span">(
+  ({ as: Tag = "span", asChild: _asChild, className, children, ...rest }) => {
+    const [imageStatus, setImageStatus] = useState<"idle" | "loaded" | "error">(
+      "idle"
+    );
+    return (
+      <AvatarContext.Provider value={{ imageStatus, setImageStatus }}>
+        <Tag
+          className={cn(
+            "relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full",
+            className
+          )}
+          {...rest}
+        >
+          {children}
+        </Tag>
+      </AvatarContext.Provider>
+    );
+  }
+);
+
+Avatar.displayName = "Avatar";
 
 type AvatarImageProps = ImgHTMLAttributes<HTMLImageElement>;
 
@@ -62,9 +72,7 @@ export function AvatarImage({ className, onLoad, onError, ...rest }: AvatarImage
   );
 }
 
-type AvatarFallbackProps = HTMLAttributes<HTMLSpanElement> & {
-  children?: ReactNode;
-};
+type AvatarFallbackProps = HTMLAttributes<HTMLSpanElement>;
 
 export function AvatarFallback({ className, children, ...rest }: AvatarFallbackProps) {
   const { imageStatus } = useAvatarContext();

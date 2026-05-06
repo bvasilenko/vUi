@@ -15,6 +15,7 @@ type SeparatorOwnProps = {
 export const Separator = createPolymorphicComponent<"hr", SeparatorOwnProps>(
   ({
     as: Tag = "hr",
+    asChild: _asChild,
     orientation = "horizontal",
     decorative = true,
     className,

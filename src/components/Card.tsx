@@ -8,7 +8,7 @@ import {
 } from "../utils/polymorphic";
 
 export const Card = createPolymorphicComponent<"article">(
-  ({ as: Tag = "article", className, children, ...rest }) => (
+  ({ as: Tag = "article", asChild: _asChild, className, children, ...rest }) => (
     <Tag
       className={cn(
         "rounded-lg border bg-card text-card-foreground shadow-sm",
@@ -24,7 +24,7 @@ export const Card = createPolymorphicComponent<"article">(
 Card.displayName = "Card";
 
 export const CardHeader = createPolymorphicComponent<"div">(
-  ({ as: Tag = "div", className, children, ...rest }) => (
+  ({ as: Tag = "div", asChild: _asChild, className, children, ...rest }) => (
     <Tag className={cn("flex flex-col space-y-1.5 p-6", className)} {...rest}>
       {children}
     </Tag>
@@ -34,7 +34,7 @@ export const CardHeader = createPolymorphicComponent<"div">(
 CardHeader.displayName = "CardHeader";
 
 export const CardTitle = createPolymorphicComponent<"h3">(
-  ({ as: Tag = "h3", className, children, ...rest }) => (
+  ({ as: Tag = "h3", asChild: _asChild, className, children, ...rest }) => (
     <Tag
       className={cn("text-2xl font-semibold leading-none tracking-tight", className)}
       {...rest}
@@ -59,7 +59,7 @@ export function CardDescription({ className, children, ...rest }: CardDescriptio
 }
 
 export const CardContent = createPolymorphicComponent<"div">(
-  ({ as: Tag = "div", className, children, ...rest }) => (
+  ({ as: Tag = "div", asChild: _asChild, className, children, ...rest }) => (
     <Tag className={cn("p-6 pt-0", className)} {...rest}>
       {children}
     </Tag>
@@ -69,7 +69,7 @@ export const CardContent = createPolymorphicComponent<"div">(
 CardContent.displayName = "CardContent";
 
 export const CardFooter = createPolymorphicComponent<"div">(
-  ({ as: Tag = "div", className, children, ...rest }) => (
+  ({ as: Tag = "div", asChild: _asChild, className, children, ...rest }) => (
     <Tag className={cn("flex items-center p-6 pt-0", className)} {...rest}>
       {children}
     </Tag>

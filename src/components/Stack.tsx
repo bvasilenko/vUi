@@ -28,7 +28,7 @@ const justifyMap: Record<NonNullable<StackOwnProps["justify"]>, string> = {
 };
 
 export const Stack = createPolymorphicComponent<"div", StackOwnProps>(
-  ({ as: Tag = "div", align, justify, className, children, ...rest }) => (
+  ({ as: Tag = "div", asChild: _asChild, align, justify, className, children, ...rest }) => (
     <Tag
       className={cn(
         "flex flex-col",

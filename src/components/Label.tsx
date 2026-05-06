@@ -8,7 +8,7 @@ import {
 } from "../utils/polymorphic";
 
 export const Label = createPolymorphicComponent<"label">(
-  ({ as: Tag = "label", className, children, ...rest }) => (
+  ({ as: Tag = "label", asChild: _asChild, className, children, ...rest }) => (
     <Tag
       className={cn(
         "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",

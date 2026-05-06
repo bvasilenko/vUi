@@ -21,7 +21,7 @@ const displayMap: Record<NonNullable<BoxOwnProps["display"]>, string> = {
 };
 
 export const Box = createPolymorphicComponent<"div", BoxOwnProps>(
-  ({ as: Tag = "div", display, className, children, ...rest }) => (
+  ({ as: Tag = "div", asChild: _asChild, display, className, children, ...rest }) => (
     <Tag
       className={cn(display && displayMap[display], className)}
       {...rest}

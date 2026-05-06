@@ -26,7 +26,7 @@ const badgeVariants = cva(
 type BadgeOwnProps = VariantProps<typeof badgeVariants>;
 
 export const Badge = createPolymorphicComponent<"span", BadgeOwnProps>(
-  ({ as: Tag = "span", variant, className, children, ...rest }) => (
+  ({ as: Tag = "span", asChild: _asChild, variant, className, children, ...rest }) => (
     <Tag className={cn(badgeVariants({ variant }), className)} {...rest}>
       {children}
     </Tag>
