@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 bvasilenko
 import { type SVGProps } from "react";
 import { type LucideIcon } from "lucide-react";
 import { cn } from "../utils/cn";

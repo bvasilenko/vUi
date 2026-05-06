@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 bvasilenko
 // @vitest-environment node
 import { describe, it, expect } from "vitest";
 import { build, type BuildOptions } from "esbuild";

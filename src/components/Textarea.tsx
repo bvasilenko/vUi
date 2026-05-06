@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 bvasilenko
 import { forwardRef, type TextareaHTMLAttributes } from "react";
 import { cn } from "../utils/cn";
 

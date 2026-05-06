@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 bvasilenko
 export { Avatar, AvatarImage, AvatarFallback } from "./Avatar";
 export type { } from "./Avatar";
 

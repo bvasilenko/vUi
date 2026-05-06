@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 bvasilenko
 export { cn } from "./utils/cn";
 export { cva, cx, type VariantProps } from "./utils/cva";
 export {

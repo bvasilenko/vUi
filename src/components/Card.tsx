@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 bvasilenko
 import { type ElementType, type HTMLAttributes, type ReactNode } from "react";
 import { cn } from "../utils/cn";
 import {

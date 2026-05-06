@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 bvasilenko
 import { type ElementType } from "react";
 import { cva, type VariantProps } from "../utils/cva";
 import { cn } from "../utils/cn";
