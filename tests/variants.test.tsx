@@ -9,7 +9,7 @@ type ButtonVariant = NonNullable<VariantProps<typeof buttonVariants>["variant"]>
 type ButtonSize = NonNullable<VariantProps<typeof buttonVariants>["size"]>;
 
 const VARIANT_ACCENT_CLASSES: Record<ButtonVariant, string> = {
-  default: "bg-[var(--v-color-accent)]",
+  default: "bg-primary",
   secondary: "bg-secondary",
   destructive: "bg-destructive",
   outline: "border",
@@ -51,7 +51,7 @@ describe("Button variants (buttonVariants fn — no DOM)", () => {
 
   it("default variant and size are applied when not specified", () => {
     const cls = buttonVariants({});
-    expect(cls).toContain("bg-[var(--v-color-accent)]");
+    expect(cls).toContain("bg-primary");
     expect(cls).toContain("h-10");
   });
 

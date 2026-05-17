@@ -34,7 +34,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         }}
         aria-checked={indeterminate ? "mixed" : undefined}
         className={cn(
-          "h-4 w-4 rounded border border-input accent-[var(--v-color-accent)] disabled:cursor-not-allowed disabled:opacity-50",
+          "h-4 w-4 rounded border border-input accent-primary disabled:cursor-not-allowed disabled:opacity-50",
           className
         )}
         {...rest}

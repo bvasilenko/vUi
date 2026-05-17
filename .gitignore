@@ -13,6 +13,7 @@ coverage/
 .vscode/
 
 # Contribot scratch (per-cycle, never commit)
-.github
+.github/docs/TODO.md
+.github/docs/TODO.md.bak
 contribot.state.*.json
 transcripts/

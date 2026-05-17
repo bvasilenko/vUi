@@ -5,23 +5,24 @@ import { render, screen } from "@testing-library/react";
 import { Button } from "../src/components/Button";
 
 describe("vTheme token bridge", () => {
-  it("Button default variant className contains vTheme CSS variable reference", () => {
+  it("Button default variant uses the vTheme `primary` color role", () => {
     render(<Button>Save</Button>);
-    const el = screen.getByRole("button");
-    const cls = el.className;
-    expect(cls).toContain("v-color-accent");
+    const cls = screen.getByRole("button").className;
+    expect(cls).toContain("bg-primary");
+    expect(cls).toContain("text-primary-foreground");
   });
 
-  it("token reference survives additional className merging", () => {
+  it("role classes survive additional className merging", () => {
     render(<Button className="mt-4">Save</Button>);
     const cls = screen.getByRole("button").className;
-    expect(cls).toContain("v-color-accent");
+    expect(cls).toContain("bg-primary");
     expect(cls).toContain("mt-4");
   });
 
-  it("non-default variant does not carry the accent token class", () => {
+  it("non-default variant does not carry the primary role class", () => {
     render(<Button variant="secondary">Secondary</Button>);
     const cls = screen.getByRole("button").className;
-    expect(cls).not.toContain("v-color-accent");
+    expect(cls).not.toContain("bg-primary");
+    expect(cls).toContain("bg-secondary");
   });
 });

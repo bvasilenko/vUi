@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-05-18
+
+### Changed
+
+- Color classes now resolve through `@booga/vtheme@^0.2.0`'s semantic role contract. `Button` (default variant), `Switch`, `Checkbox`, and `RadioGroup` previously hardcoded `var(--v-color-accent)` arbitrary-value classes; they now use the `primary` color role (`bg-primary`, `text-primary-foreground`, `accent-primary`).
+- Consumers must apply vTheme's Tailwind preset (`presets: [require("@booga/vtheme/preset")]`) for vUi's classes to resolve. The preset defines every color role and the light/dark variables.
+- `@booga/vtheme` dependency raised to `^0.2.0`; `tailwindcss` peer raised to `^3.4.0`.
+
 ## [0.1.0] - 2026-05-06
 
 ### Added
@@ -27,4 +35,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Icon`: lucide-react wrapper
 - `Box`, `Stack`, `Inline`, `Grid`: layout primitives
 
+[0.2.0]: https://github.com/bvasilenko/vUi/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/bvasilenko/vUi/releases/tag/v0.1.0

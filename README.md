@@ -8,7 +8,26 @@ Polymorphic React primitives. CVA variants, `cn()` class dedup, token bridge to 
 npm install @booga/vui
 ```
 
-Peer deps: `react ^18`, `react-dom ^18`, `tailwindcss ^3`.
+Peer deps: `react ^18`, `react-dom ^18`, `tailwindcss ^3.4`.
+
+## Theme setup
+
+vUi's components emit Tailwind color-role classes (`bg-primary`, `border-input`, …). Those roles are defined by `@booga/vtheme`. Apply its preset so they resolve:
+
+```js
+// tailwind.config.js
+import vtheme from "@booga/vtheme/preset";
+
+export default {
+  presets: [vtheme],
+  content: [
+    "./src/**/*.{ts,tsx}",
+    "./node_modules/@booga/vui/dist/**/*.js",
+  ],
+};
+```
+
+Without the preset the role classes compile to nothing — components render unstyled.
 
 ## Usage
 

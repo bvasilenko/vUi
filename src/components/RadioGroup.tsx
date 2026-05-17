@@ -110,7 +110,7 @@ export const RadioGroupItem = forwardRef<HTMLInputElement, RadioGroupItemProps>(
         onChange={() => onValueChange(value)}
         aria-label={label}
         className={cn(
-          "h-4 w-4 border border-input accent-[var(--v-color-accent)] disabled:cursor-not-allowed disabled:opacity-50",
+          "h-4 w-4 border border-input accent-primary disabled:cursor-not-allowed disabled:opacity-50",
           className
         )}
         {...rest}
