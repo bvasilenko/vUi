@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.1] - 2026-05-18
+
+### Fixed
+
+- Precompiled `dist/styles.css` was built against a stale `@booga/vtheme@0.2.1`,
+  whose type scale used a 1.5 ratio — `text-2xl` resolved to 3.375rem (54px) and
+  `text-sm` to 0.667rem (10.7px). Card titles rendered grotesquely oversized and
+  button/badge text was sub-legible for any consumer using the precompiled
+  stylesheet. Rebuilt against `@booga/vtheme@0.2.2` (the corrected scale:
+  `text-sm` 0.875rem, `text-2xl` 1.5rem). `@booga/vtheme` dependency raised to
+  `^0.2.2`.
+
 ## [0.3.0] - 2026-05-18
 
 ### Added

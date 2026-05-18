@@ -4,7 +4,7 @@
     "": {
       "name": "@booga/vui",
       "dependencies": {
-        "@booga/vtheme": "^0.2.0",
+        "@booga/vtheme": "^0.2.2",
         "@radix-ui/react-slot": "^1.0.0",
         "class-variance-authority": "^0.7.0",
         "clsx": "^2.0.0",
@@ -90,7 +90,7 @@
 
     "@bcoe/v8-coverage": ["@bcoe/v8-coverage@1.0.2", "", {}, "sha512-6zABk/ECA/QYSCQ1NGiVwwbQerUCZ+TQbp64Q3AgmfNvurHH0j8TtXa1qbShXA6qqkpAj4V5W8pP6mLe1mcMqA=="],
 
-    "@booga/vtheme": ["@booga/vtheme@0.2.0", "", { "dependencies": { "zod": "^3.0.0" }, "peerDependencies": { "tailwindcss": "^3.4.0" } }, "sha512-R+f/2xgJpi5MPPQa5g7UyuNVDelI31786OOEwr5PPaIIuMdTYvVd0Pl08k86qjJ9OooZNjUwuw+M7ASOf906Vg=="],
+    "@booga/vtheme": ["@booga/vtheme@0.2.2", "", { "dependencies": { "zod": "^3.0.0" }, "peerDependencies": { "tailwindcss": "^3.4.0" } }, "sha512-TQV+fZuVu+Y7/31z+vsEoIkhKXNbKSdGVG4EoZoCoUoielfspfpP7XEKARRW+hLcAbLF0nGhdNwx2noa71fCfw=="],
 
     "@csstools/color-helpers": ["@csstools/color-helpers@5.1.0", "", {}, "sha512-S11EXWJyy0Mz5SYvRmY8nJYTFFd1LCNV+7cXyAgQtOOuzb4EsgfqDufL+9esx72/eLhsRdGZwaldu/h+E4t4BA=="],
 
