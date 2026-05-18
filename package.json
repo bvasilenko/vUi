@@ -1,6 +1,6 @@
 {
   "name": "@booga/vui",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Polymorphic React primitives. CVA variants, cn() dedup, token bridge to vTheme. Semantic HTML, ARIA defaults, split-bundle tree-shaking.",
   "type": "module",
   "sideEffects": false,
@@ -12,7 +12,8 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
-    }
+    },
+    "./styles.css": "./dist/styles.css"
   },
   "files": [
     "dist/**/*",
@@ -22,14 +23,15 @@
   ],
   "scripts": {
     "dev": "tsup --watch",
-    "build": "tsup",
+    "build": "tsup && npm run build:css",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "test": "vitest run --coverage",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "build:css": "tailwindcss -i ./styles-entry.css -c ./tailwind.config.js -o ./dist/styles.css --minify"
   },
   "dependencies": {
-    "@booga/vtheme": "^0.2.0",
+    "@booga/vtheme": "^0.2.1",
     "@radix-ui/react-slot": "^1.0.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
@@ -56,6 +58,7 @@
     "jsdom": "^25.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "tailwindcss": "^3.4.0",
     "tsup": "^8.0.0",
     "typescript": "^5.0.0",
     "typescript-eslint": "^8.0.0",

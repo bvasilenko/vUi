@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-05-18
+
+### Added
+
+- Precompiled stylesheet at `@booga/vui/styles.css` — a zero-config adoption path. A consumer with no Tailwind pipeline applies the components by importing this one file; no preset, no content globs, no Tailwind build required. Consumers who run their own Tailwind should keep using `@booga/vtheme/preset` for live token integration. The stylesheet is built at package-build time against the current `@booga/vtheme`.
+
+### Changed
+
+- `@booga/vtheme` dependency raised to `^0.2.1` (the spacing-coherent contract); 0.2.0 is excluded.
+
 ## [0.2.0] - 2026-05-18
 
 ### Changed
@@ -35,5 +45,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Icon`: lucide-react wrapper
 - `Box`, `Stack`, `Inline`, `Grid`: layout primitives
 
+[0.3.0]: https://github.com/bvasilenko/vUi/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/bvasilenko/vUi/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/bvasilenko/vUi/releases/tag/v0.1.0
