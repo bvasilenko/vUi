@@ -28,6 +28,9 @@ export type { CheckboxProps } from "./Checkbox";
 export { Dialog, DialogTrigger, DialogContent, DialogClose } from "./Dialog";
 export type { DialogProps, DialogContentProps } from "./Dialog";
 
+export { Eyebrow } from "./Eyebrow";
+export type { EyebrowProps } from "./Eyebrow";
+
 export { Grid } from "./Grid";
 export type { GridProps } from "./Grid";
 
@@ -39,8 +42,17 @@ export type { InlineProps } from "./Inline";
 export { Input } from "./Input";
 export type { InputProps } from "./Input";
 
+export { Kicker } from "./Kicker";
+export type { KickerProps } from "./Kicker";
+
 export { Label } from "./Label";
 export type { LabelProps } from "./Label";
+
+export { Lead } from "./Lead";
+export type { LeadProps } from "./Lead";
+
+export { Pill } from "./Pill";
+export type { PillProps } from "./Pill";
 
 export { Popover, PopoverTrigger, PopoverContent, PopoverClose } from "./Popover";
 export type { PopoverProps, PopoverContentProps } from "./Popover";

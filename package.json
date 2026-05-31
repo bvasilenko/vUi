@@ -1,6 +1,6 @@
 {
   "name": "@booga/vui",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "Polymorphic React primitives. CVA variants, cn() dedup, token bridge to vTheme. Semantic HTML, ARIA defaults, split-bundle tree-shaking.",
   "type": "module",
   "sideEffects": false,
@@ -31,7 +31,8 @@
     "build:css": "tailwindcss -i ./styles-entry.css -c ./tailwind.config.js -o ./dist/styles.css --minify"
   },
   "dependencies": {
-    "@booga/vtheme": "^0.2.2",
+    "@booga/vtheme": "^0.3.0",
+    "@booga/vdsl": "^0.3.0",
     "@radix-ui/react-slot": "^1.0.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",

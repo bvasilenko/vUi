@@ -10,7 +10,7 @@ import {
 } from "../utils/polymorphic";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium tracking-tight ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
@@ -26,10 +26,17 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
-        sm: "h-9 rounded-md px-3",
-        md: "h-10 px-4 py-2",
-        lg: "h-11 rounded-md px-8",
+        sm: "h-9 rounded-md px-4",
+        md: "h-10 px-8 py-2.5",
+        lg: "h-11 rounded-md px-10",
         icon: "h-10 w-10",
+      },
+      tone: {
+        ok: "bg-tone-ok-bg text-tone-ok-fg hover:bg-tone-ok-soft",
+        warn: "bg-tone-warn-bg text-tone-warn-fg hover:bg-tone-warn-soft",
+        bad: "bg-tone-bad-bg text-tone-bad-fg hover:bg-tone-bad-soft",
+        info: "bg-tone-info-bg text-tone-info-fg hover:bg-tone-info-soft",
+        meta: "bg-tone-meta-bg text-tone-meta-fg hover:bg-tone-meta-soft",
       },
     },
     defaultVariants: { variant: "default", size: "md" },
@@ -39,11 +46,11 @@ const buttonVariants = cva(
 type ButtonOwnProps = VariantProps<typeof buttonVariants>;
 
 export const Button = createPolymorphicComponent<"button", ButtonOwnProps>(
-  ({ as: Tag = "button", asChild = false, variant, size, className, children, ...rest }) => {
+  ({ as: Tag = "button", asChild = false, variant, size, tone, className, children, ...rest }) => {
     const Comp: any = asChild ? Slot : Tag;
     return (
       <Comp
-        className={cn(buttonVariants({ variant, size }), className)}
+        className={cn(buttonVariants({ variant, size, tone }), className)}
         {...rest}
       >
         {children}

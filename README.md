@@ -1,6 +1,6 @@
 # vUi
 
-Polymorphic React primitives. CVA variants, `cn()` class dedup, token bridge to vTheme. Semantic HTML defaults, ARIA inline, ref forwarding — no theme provider, no runtime config.
+Polymorphic React primitives. CVA variants, `cn()` class dedup, token bridge to vTheme. Semantic HTML defaults, ARIA inline, ref forwarding  - no theme provider, no runtime config.
 
 ## Install
 
@@ -27,7 +27,7 @@ export default {
 };
 ```
 
-Without the preset the role classes compile to nothing — components render unstyled.
+Without the preset the role classes compile to nothing  - components render unstyled.
 
 ## Usage
 
@@ -70,7 +70,26 @@ Every component accepts `as` to change the rendered element. TypeScript narrows 
 ## Variants (Button)
 
 `variant`: `default` | `secondary` | `destructive` | `outline` | `ghost` | `link`  
-`size`: `sm` | `md` | `lg` | `icon`
+`size`: `sm` | `md` | `lg` | `icon`  
+`tone`: `ok` | `warn` | `bad` | `info` | `meta` (paints with vTheme tone tokens)
+
+## Proposal-vocabulary primitives
+
+`Kicker`, `Eyebrow`, `Lead`, `Pill` carry the proposal-style typography and
+density vocabulary inherited from vTheme 0.3.0. Each forwards refs, is
+polymorphic via `as`, and accepts `tone` where semantic palette applies.
+
+```tsx
+import { Kicker, Eyebrow, Lead, Pill } from "@booga/vui";
+
+<Kicker tone="info">Phase 1</Kicker>
+<Eyebrow>Section overhead</Eyebrow>
+<Lead>Opening paragraph with constrained measure.</Lead>
+<Pill tone="ok">Client</Pill>
+<Pill tone="warn" outlined>Heads up</Pill>
+```
+
+`Badge` and `Card` also accept the `tone` prop for semantic surfaces.
 
 ## Token bridge
 
@@ -78,11 +97,11 @@ Button's default variant references `--v-color-accent` from vTheme CSS variables
 
 ## Layout primitives
 
-`Box`, `Stack`, `Inline`, `Grid` — flex/grid wrappers, polymorphic, extend via `className`.
+`Box`, `Stack`, `Inline`, `Grid`  - flex/grid wrappers, polymorphic, extend via `className`.
 
 ## Overlay components
 
-`Sheet`, `Dialog`, `Popover`, `Tooltip` — compound components with ARIA defaults. Enhanced by `vAria` when installed.
+`Sheet`, `Dialog`, `Popover`, `Tooltip`  - compound components with ARIA defaults. Enhanced by `vAria` when installed.
 
 ```tsx
 <Sheet open={open} onOpenChange={setOpen}>

@@ -9,7 +9,7 @@ import {
 } from "../utils/polymorphic";
 
 const badgeVariants = cva(
-  "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors",
+  "inline-flex items-center rounded-full border px-3 py-1.5 text-xs font-semibold uppercase tracking-wide transition-colors",
   {
     variants: {
       variant: {
@@ -17,6 +17,13 @@ const badgeVariants = cva(
         secondary: "border-transparent bg-secondary text-secondary-foreground",
         destructive: "border-transparent bg-destructive text-destructive-foreground",
         outline: "text-foreground",
+      },
+      tone: {
+        ok: "border-tone-ok-fg/25 bg-tone-ok-soft text-tone-ok-fg",
+        warn: "border-tone-warn-fg/25 bg-tone-warn-soft text-tone-warn-fg",
+        bad: "border-tone-bad-fg/25 bg-tone-bad-soft text-tone-bad-fg",
+        info: "border-tone-info-fg/25 bg-tone-info-soft text-tone-info-fg",
+        meta: "border-tone-meta-fg/25 bg-tone-meta-soft text-tone-meta-fg",
       },
     },
     defaultVariants: { variant: "default" },
@@ -26,8 +33,8 @@ const badgeVariants = cva(
 type BadgeOwnProps = VariantProps<typeof badgeVariants>;
 
 export const Badge = createPolymorphicComponent<"span", BadgeOwnProps>(
-  ({ as: Tag = "span", asChild: _asChild, variant, className, children, ...rest }) => (
-    <Tag className={cn(badgeVariants({ variant }), className)} {...rest}>
+  ({ as: Tag = "span", asChild: _asChild, variant, tone, className, children, ...rest }) => (
+    <Tag className={cn(badgeVariants({ variant, tone }), className)} {...rest}>
       {children}
     </Tag>
   )
